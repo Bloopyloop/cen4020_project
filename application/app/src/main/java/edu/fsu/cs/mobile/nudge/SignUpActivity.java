@@ -52,48 +52,51 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = mPassword.getText().toString().trim();
                 String confirm = mConfirm.getText().toString().trim();
 
+                boolean formFilled = true;
+
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
+                    mEmail.setError("Enter email address!");
+                    formFilled = false;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
+                    mPassword.setError("Enter password!");
+                    formFilled = false;
                 }
 
                 if (TextUtils.isEmpty(confirm)) {
-                    Toast.makeText(getApplicationContext(), "Confirm Password!", Toast.LENGTH_SHORT).show();
-                    return;
+                    mConfirm.setError("Confirm password!");
+                    formFilled = false;
                 }
 
                 if (!password.equals(confirm)) {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
-                    return;
+                    mPassword.setError("Passwords do not match");
+                    mConfirm.setError("");
+                    formFilled = false;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                    return;
+                    mPassword.setError("Password must be at least 6 characters.");
+                    formFilled = false;
                 }
 
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                if (formFilled) {
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    Log.i(TAG, "SUCCESS");
-                                    Toast.makeText(getApplicationContext(), "SUCCESS!", Toast.LENGTH_LONG ).show();
-                                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                                    startActivity(intent);
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.i(TAG, "SUCCESS");
+                                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        Log.i(TAG, "FAIL");
+                                        Toast.makeText(getApplicationContext(), "Registration FAILED!", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                                else {
-                                    Log.i(TAG, "FAIL");
-                                    Toast.makeText(getApplicationContext(), "Registration FAILED!", Toast.LENGTH_LONG ).show();
-                                }
-                            }
-                        });// onCompleteListener
+                            });// onCompleteListener
+                }
             }
         });
     }
