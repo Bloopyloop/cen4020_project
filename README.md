@@ -11,11 +11,14 @@ Nudge is a digital business card application. Nudge allows users to quickly and 
 - Felippe Lossano
 
 ### Todo: #
-- [ ] Firebase Authentication (Login)
+- [X] Firebase Authentication (Login)
     - [X] Sign Up - Add user to Firebase
-    - [ ] Sign In
+    - [X] Sign In
 - [ ] Firebase Database
-    - [ ] Basic Profile Information - Name, Phone, Work, Education
+    - [X] Home Activity
+    - [ ] Make Card Fragment
+    - [ ] Contact Fragment
+    - [ ] My Cards Fragment 
     - [ ] Add Social Media Accounts, Personal Website Links
     - [ ] Add Document Upload
 - [ ] ZXing QR Generator

@@ -65,12 +65,15 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
 
-        //Intent intent = new Intent(this, Home.class);
-        //startActivity(intent);
     }
 
     public void signUpButton(View view){
-        Intent intent = new Intent(this, SignUpActivity.class);
+        // uncomment before submission
+        //Intent intent = new Intent(this, SignUpActivity.class);
+        //startActivity(intent);
+
+        // short cut to home for testing purposes
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_contacts"
+        android:icon="@drawable/ic_outline_contacts_24px"
+        android:title="Contacts"/>
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_library_books_24px"
+        android:title="My Cards"/>
+    <item
+        android:id="@+id/nav_add"
+        android:icon="@drawable/ic_outline_add_24px"
+        android:title="Add Card"/>
+
+</menu>
