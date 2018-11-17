@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     (new OnCompleteListener<AuthResult>() {
                          public void onComplete(@NonNull Task<AuthResult> task) {
                              if(task.isSuccessful()) {
-                                 Intent intent = new Intent(MainActivity.this, Home.class);
+                                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                                  startActivity(intent);
                              }
                              else {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(intent);
 
         // short cut to home for testing purposes
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
