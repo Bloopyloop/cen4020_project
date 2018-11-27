@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import android.util.Log;
+
 public class MainActivity extends AppCompatActivity {
     EditText mEmail;
     EditText mPassword;
@@ -45,12 +47,9 @@ public class MainActivity extends AppCompatActivity {
             submitFlag = false;
         }
 
-        if(password.length() < 6){
-            mPassword.setError("Field must be longer than 6 characters");
-            submitFlag = false;
-        }
 
         if(submitFlag){
+            Log.i("submit", "submit Flag == true");
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener
                     (new OnCompleteListener<AuthResult>() {
                          public void onComplete(@NonNull Task<AuthResult> task) {

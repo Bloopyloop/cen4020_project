@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/cardview_light_background"
+            android:text="title"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/name_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_textView"
+            android:background="@color/cardview_light_background"
+            android:text="name"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/cell_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_textView"
+            android:background="@color/cardview_light_background"
+            android:text="cell"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

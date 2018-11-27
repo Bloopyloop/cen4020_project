@@ -9,7 +9,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 
-import java.lang.invoke.ConstantCallSite;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -22,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void setupNavigation(){
+    public void setupNavigation(){
         BottomNavigationView navBar = (BottomNavigationView) findViewById(R.id.navigationBar);
 
         if (navBar != null){

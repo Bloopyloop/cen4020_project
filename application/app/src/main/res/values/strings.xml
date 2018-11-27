@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Nudge</string>
 
     <string name="signin">Sign In</string>
@@ -8,10 +8,36 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm">Confirm Password</string>
+
+    <!-- Make Card -->
+    <!-- ends in "_" = colon -->
     <string name="title_activity_login">Sign in</string>
+    <string name="card_title_">Card Title:</string>
+    <string name="display_name_">Display Name:</string>
+    <string name="cell_phone_">Cell Phone:</string>
+    <string name="home_phone_">Home Phone:</string>
+    <string name="work_phone_">Work Phone:</string>
+    <string name="personal_email_">Email:</string>
+    <string name="work_email_">Work Email:</string>
+    <string name="website_">Website:</string>
+    <string name="work_website_">Work Website:</string>
+    <string name="linkedin_">LinkedIn:</string>
+    <string name="facebook_">Facebook:</string>
+    <string name="twitter_">Twitter:</string>
+    <string name="note_">Note:</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="card_title">Card Title</string>
+    <string name="display_name">Display Name</string>
+    <string name="cell_phone">Cell Phone</string>
+    <string name="home_phone">Home Phone</string>
+    <string name="work_phone">Work Phone</string>
+    <string name="personal_email">Email</string>
+    <string name="work_email">Work Email</string>
+    <string name="website">Personal Website</string>
+    <string name="work_website">Work Website</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="note">Note</string>
 
 </resources>
