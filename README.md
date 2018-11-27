@@ -16,9 +16,9 @@ Nudge is a digital business card application. Nudge allows users to quickly and 
     - [X] Sign In
 - [ ] Firebase Database
     - [X] Home Activity
-    - [ ] Make Card Fragment
+    - [X] Make Card Fragment
     - [ ] Contact Fragment
-    - [ ] My Cards Fragment 
+    - [X] My Cards Fragment 
     - [ ] Add Social Media Accounts, Personal Website Links
     - [ ] Add Document Upload
 - [ ] ZXing QR Generator
