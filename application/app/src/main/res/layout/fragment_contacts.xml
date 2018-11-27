@@ -16,5 +16,5 @@
         android:text="Barcode Scanner"
         android:layout_marginTop="20dp"
         android:textSize="10sp"
-        android:onClick="scanStart"/>
+        android:id="@+id/barcode_scan_button"/>
 </FrameLayout>

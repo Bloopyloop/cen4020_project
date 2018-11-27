@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -31,11 +32,20 @@ import static android.app.Activity.RESULT_OK;
 public class ContactsFragment extends Fragment {
 
     private final int BARCODE_REQ_CODE = 200;
+    Button mButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+        mButton = (Button) view.findViewById(R.id.barcode_scan_button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, BARCODE_REQ_CODE);
+            }
+        });
         return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
 
@@ -90,12 +100,6 @@ public class ContactsFragment extends Fragment {
                         Toast.makeText(getActivity(), "Error, unable to find contact.", Toast.LENGTH_LONG).show();
                     }
                 });
-    }
-
-    public void scanStart(View v) {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, BARCODE_REQ_CODE);
-
     }
 
     /* private void scanQR(FirebaseVisionImage image) {
