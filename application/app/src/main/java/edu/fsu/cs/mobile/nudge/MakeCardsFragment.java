@@ -43,7 +43,8 @@ public class MakeCardsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference();
+       // ref = database.getReference();
+        ref = database.getReference("cards");
         user = FirebaseAuth.getInstance().getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_make_card, container, false);
 
@@ -64,33 +65,26 @@ public class MakeCardsFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String uid = user.getUid();
-                String key = ref.child("cards").push().getKey();
-                Map<String, String> myMap = new HashMap<String, String>();
+                String key = ref.push().getKey();
 
+                Card card = new Card();
 
-                myMap.put("UID", uid);
-                myMap.put("CardTitle", mCardTitle.getText().toString());
-                myMap.put("DisplayName", mDisplayName.getText().toString());
-                myMap.put("CellPhone", mCellNum.getText().toString());
-                myMap.put("WorkPhone", mWorkNum.getText().toString());
-                myMap.put("HomePhone", mHomeNum.getText().toString());
-                myMap.put("Email", mEmail.getText().toString());
-                myMap.put("WorkEmail", mWorkEmail.getText().toString());
-                myMap.put("Website", mWebsite.getText().toString());
-                myMap.put("LinkedIn", mLinkedin.getText().toString());
-                myMap.put("Facebook", mFacebook.getText().toString());
-                myMap.put("Twitter", mTwitter.getText().toString() );
+                card.setUid(uid);
+                card.setCardTitle(mCardTitle.getText().toString());
+                card.setDisplayName(mDisplayName.getText().toString());
+                card.setCellNumber(mCellNum.getText().toString());
+                card.setWorkNumber(mWorkNum.getText().toString());
+                card.setHomeNumber(mHomeNum.getText().toString());
+                card.setPersonalEmail(mEmail.getText().toString());
+                card.setWorkEmail(mWorkEmail.getText().toString());
+                card.setWebsite(mWebsite.getText().toString());
+                card.setLinkedIn(mLinkedin.getText().toString());
+                card.setFacebook(mFacebook.getText().toString());
+                card.setTwitter(mTwitter.getText().toString());
 
-
-                Log.i("MakeCard - Work", mWorkNum.getText().toString());
-                Log.i("MakeCard - Home", mHomeNum.getText().toString());
-
-                Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put("/cards/" + key, myMap);
-
-
-                ref.updateChildren(childUpdates);
+                ref.child(key).setValue(card);
 
                 ((HomeActivity) getActivity()).setupNavigation();
             }

@@ -10,36 +10,124 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/title_textView"
+            android:id="@+id/title_card_textView"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:background="@color/cardview_light_background"
-            android:text="title"
+            android:text="@string/card_title"
             android:gravity="center_vertical"
             android:textColor="@color/darkText"
             android:textSize="14sp"/>
 
         <TextView
-            android:id="@+id/name_textView"
+            android:id="@+id/name_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title_textView"
+            android:layout_below="@id/title_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="name"
+            android:text="@string/display_name"
             android:gravity="center_vertical"
             android:textColor="@color/darkText"
             android:textSize="14sp"/>
 
         <TextView
-            android:id="@+id/cell_textView"
+            android:id="@+id/cell_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/name_textView"
+            android:layout_below="@id/name_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="cell"
+            android:text="@string/cell_phone"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/workNumber_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cell_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/work_phone"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/homeNumber_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workNumber_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/home_phone"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/personalEmail_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/homeNumber_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/personal_email"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/workEmail_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/personalEmail_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/work_email"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/website_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workEmail_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/website"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/linkedin_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/website_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/linkedin"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/facebook_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linkedin_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/facebook"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/twitter_card_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/facebook_card_textView"
+            android:background="@color/cardview_light_background"
+            android:text="@string/twitter"
             android:gravity="center_vertical"
             android:textColor="@color/darkText"
             android:textSize="14sp"/>

@@ -2,7 +2,7 @@ package edu.fsu.cs.mobile.nudge;
 
 public class Card {
 
-    String cardID;
+    String uid;
     String cardTitle;
     String displayName;
     String cellNumber;
@@ -10,18 +10,16 @@ public class Card {
     String homeNumber;
     String personalEmail;
     String workEmail;
-    String personalWebsite;
-    String workWebsite;
+    String website;
     String linkedIn;
     String facebook;
     String twitter;
-    String note;
 
     public Card() {
     }
 
-    public Card(String cardID, String cardTitle, String displayName, String cellNumber, String workNumber, String homeNumber, String personalEmail, String workEmail, String personalWebsite, String linkedIn, String facebook, String twitter, String note) {
-        this.cardID = cardID;
+    public Card(String uid, String cardTitle, String displayName, String cellNumber, String workNumber, String homeNumber, String personalEmail, String workEmail, String website, String linkedIn, String facebook, String twitter) {
+        this.uid = uid;
         this.cardTitle = cardTitle;
         this.displayName = displayName;
         this.cellNumber = cellNumber;
@@ -29,19 +27,18 @@ public class Card {
         this.homeNumber = homeNumber;
         this.personalEmail = personalEmail;
         this.workEmail = workEmail;
-        this.personalWebsite = personalWebsite;
+        this.website = website;
         this.linkedIn = linkedIn;
         this.facebook = facebook;
         this.twitter = twitter;
-        this.note = note;
     }
 
-    public String getCardID() {
-        return cardID;
+    public String getUid() {
+        return uid;
     }
 
-    public void setCardID(String cardID) {
-        this.cardID = cardID;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getCardTitle() {
@@ -100,20 +97,12 @@ public class Card {
         this.workEmail = workEmail;
     }
 
-    public String getPersonalWebsite() {
-        return personalWebsite;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setPersonalWebsite(String personalWebsite) {
-        this.personalWebsite = personalWebsite;
-    }
-
-    public String getWorkWebsite() {
-        return workWebsite;
-    }
-
-    public void setWorkWebsite(String workWebsite) {
-        this.workWebsite = workWebsite;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getLinkedIn() {
@@ -140,11 +129,4 @@ public class Card {
         this.twitter = twitter;
     }
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 }

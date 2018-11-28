@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ArrayList;
 import android.util.Log;
 import android.widget.Toast;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,47 +30,67 @@ public class MyCardsFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference ref;
     FirebaseUser user;
+    Card printCard;
+    List<Card> listCards;
+    RecyclerView rec;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_cards, container, false);
 
-
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("nudge-66149/data/cards");
+        ref = database.getReference("cards");
         user = FirebaseAuth.getInstance().getCurrentUser();
-        RecyclerView rec =  (RecyclerView) view.findViewById(R.id.recyclerView);
+
+        rec =  (RecyclerView) view.findViewById(R.id.recyclerView);
         rec.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rec.setLayoutManager(llm);
 
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnap : dataSnapshot.getChildren()){
-                    Card card = dataSnap.getValue(Card.class);
+        listCards = new ArrayList<>();
 
-                    Log.i("onDataChanged", "data changed");
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.i("onCancelled", "ERROR READING DB");
-            }
-        });
+        //CardAdapter ca = new CardAdapter(createList(1));
+        //rec.setAdapter(ca);
 
-        CardAdapter ca = new CardAdapter(createList(1));
-        rec.setAdapter(ca);
 
         return view;
 
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                listCards.clear();
+
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()){
+                    printCard = cardSnapshot.getValue(Card.class);
+
+                    listCards.add(printCard);
+
+                    CardAdapter ca = new CardAdapter(listCards);
+                    rec.setAdapter(ca);
+                }
+
+                Log.i("onDataChanged",  listCards.get(0).cardTitle);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     /* test function */
     private List<Card> createList(int size){
@@ -78,7 +100,7 @@ public class MyCardsFragment extends Fragment {
             Card card = new Card();
 
             card.cardTitle = "Test Card Title";
-            card.displayName = "Display Name";
+            card.displayName = "Empty";
             card.cellNumber = "cellNumber";
 
             result.add(card);
