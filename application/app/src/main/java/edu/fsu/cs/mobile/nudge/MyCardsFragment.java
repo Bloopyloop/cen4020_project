@@ -52,14 +52,7 @@ public class MyCardsFragment extends Fragment {
 
         listCards = new ArrayList<>();
 
-
-        //CardAdapter ca = new CardAdapter(createList(1));
-        //rec.setAdapter(ca);
-
-
         return view;
-
-
     }
 
     @Override
@@ -71,17 +64,22 @@ public class MyCardsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 listCards.clear();
+                if (dataSnapshot.exists()) {
 
-                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()){
-                    printCard = cardSnapshot.getValue(Card.class);
+                    for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) {
+                        printCard = cardSnapshot.getValue(Card.class);
 
-                    listCards.add(printCard);
+                        listCards.add(printCard);
 
-                    CardAdapter ca = new CardAdapter(listCards);
+                        CardAdapter ca = new CardAdapter(listCards);
+                        rec.setAdapter(ca);
+                    }
+
+                }
+                else {
+                    CardAdapter ca = new CardAdapter(createList(1));
                     rec.setAdapter(ca);
                 }
-
-                Log.i("onDataChanged",  listCards.get(0).cardTitle);
             }
 
             @Override
@@ -92,23 +90,28 @@ public class MyCardsFragment extends Fragment {
 
     }
 
-    /* test function */
     private List<Card> createList(int size){
         List<Card> result = new ArrayList<Card>();
 
         for(int i = 1; i <= size; ++i){
             Card card = new Card();
 
-            card.cardTitle = "Test Card Title";
-            card.displayName = "Empty";
-            card.cellNumber = "cellNumber";
+            card.cardTitle = "";
+            card.displayName = "";
+            card.cellNumber = "";
+            card.homeNumber = "";
+            card.workNumber = "";
+            card.personalEmail = "";
+            card.workEmail = "";
+            card.website = "";
+            card.linkedIn = "";
+            card.facebook = "";
+            card.twitter = "";
 
             result.add(card);
         }
 
         return result;
     }
-
-
 
 }

@@ -42,9 +42,10 @@ public class MakeCardsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         database = FirebaseDatabase.getInstance();
-       // ref = database.getReference();
         ref = database.getReference("cards");
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_make_card, container, false);
 
