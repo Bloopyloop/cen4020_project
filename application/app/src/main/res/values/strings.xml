@@ -40,4 +40,6 @@
     <string name="twitter">Twitter</string>
     <string name="note">Note</string>
 
+    <string name="no_cards">Click Make Card to Make Your First Card!</string>
+
 </resources>

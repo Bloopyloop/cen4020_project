@@ -30,36 +30,54 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     }
 
     public void onBindViewHolder(final CardViewHolder cardViewHolder, int i){
-        QRCodeGenerator QRGen = new QRCodeGenerator(qrContext);
-        try {
-            bmp = QRGen.generateQRCodeImage("Pootis");
-            String path = QRGen.saveImage(bmp);
-        }
-        catch (WriterException e) {
-            e.printStackTrace();
-        }
+        final QRCodeGenerator QRGen = new QRCodeGenerator(qrContext);
         Card card = cardList.get(i);
-        cardViewHolder.mTitle.setText(card.cardTitle);
-        cardViewHolder.mName.setText(card.displayName);
-        cardViewHolder.mCell.setText(card.cellNumber);
-        cardViewHolder.mWorkNum.setText(card.workNumber);
-        cardViewHolder.mHomeNum.setText(card.homeNumber);
-        cardViewHolder.mEmail.setText(card.personalEmail);
-        cardViewHolder.mWebsite.setText(card.website);
-        cardViewHolder.mLinkedin.setText(card.linkedIn);
-        cardViewHolder.mFacebook.setText(card.facebook);
-        cardViewHolder.mTwitter.setText(card.twitter);
-        cardViewHolder.mQRButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(cardViewHolder.mQRButton.isPressed()) {
-                    cardViewHolder.mQRButton.setImageBitmap(bmp);
+        if(card.cardTitle.isEmpty() && card.displayName.isEmpty() && card.cellNumber.isEmpty() &&
+                card.workNumber.isEmpty() && card.homeNumber.isEmpty() && card.personalEmail.isEmpty() &&
+                card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
+                card.facebook.isEmpty() && card.twitter.isEmpty()) {
+            cardViewHolder.mTitle.setText("Click Add Card to Make your First Card! ");
+            cardViewHolder.mName.setText("");
+            cardViewHolder.mCell.setText("");
+            cardViewHolder.mWorkNum.setText("");
+            cardViewHolder.mHomeNum.setText("");
+            cardViewHolder.mEmail.setText("");
+            cardViewHolder.mWorkEmail.setText("");
+            cardViewHolder.mWebsite.setText("");
+            cardViewHolder.mLinkedin.setText("");
+            cardViewHolder.mFacebook.setText("");
+            cardViewHolder.mTwitter.setText("");
+            cardViewHolder.mQRButton.setVisibility(View.INVISIBLE);
+        }
+        else {
+            cardViewHolder.mTitle.setText("Title: " + card.cardTitle);
+            cardViewHolder.mName.setText("Name: " + card.displayName);
+            cardViewHolder.mCell.setText("Cell: " + card.cellNumber);
+            cardViewHolder.mWorkNum.setText("Work Number: " + card.workNumber);
+            cardViewHolder.mHomeNum.setText("Home Number: " + card.homeNumber);
+            cardViewHolder.mEmail.setText("Email: " + card.personalEmail);
+            cardViewHolder.mWorkEmail.setText("Work Email: " + card.workEmail);
+            cardViewHolder.mWebsite.setText("Website: " + card.website);
+            cardViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
+            cardViewHolder.mFacebook.setText("Facebook: " + card.facebook);
+            cardViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+            cardViewHolder.mQRButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (cardViewHolder.mQRButton.isPressed()) {
+                        try {
+                            bmp = QRGen.generateQRCodeImage("Foobar");
+                            String path = QRGen.saveImage(bmp);
+                        } catch (WriterException e) {
+                            e.printStackTrace();
+                        }
+                        cardViewHolder.mQRButton.setImageBitmap(bmp);
+                    } else {
+                        cardViewHolder.mQRButton.setImageResource(R.drawable.viewqrbutton);
+                    }
                 }
-                else {
-                    cardViewHolder.mQRButton.setImageResource(R.drawable.viewqrbutton);
-                }
-            }
-        });
+            });
+        }
     }
 
     public CardViewHolder onCreateViewHolder (ViewGroup viewGroup, int i){
