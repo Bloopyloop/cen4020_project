@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SCAN QR"
-        android:layout_marginTop="20dp"
         android:textSize="10sp"
         android:id="@+id/barcode_scan_button"/>
 

@@ -46,10 +46,10 @@ public class ContactsFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
+                    Intent cameraIntent = new Intent(((HomeActivity) getActivity()), CameraActivity.class);
                     startActivity(cameraIntent);
             }
         });
-        return inflater.inflate(R.layout.fragment_contacts, container, false);
+        return view;
     }
 }
