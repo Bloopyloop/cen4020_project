@@ -21,8 +21,8 @@ Nudge is a digital business card application. Nudge allows users to quickly and 
     - [X] My Cards Fragment 
     - [ ] Add Social Media Accounts, Personal Website Links
     - [ ] Add Document Upload
-- [~] ZXing QR Generator
-- [~] Firebase ML Vision Barcode Reader
+- [X] ZXing QR Generator
+- [X] Firebase ML Vision Barcode Reader
 - [ ] Android Beam NFC
     - [ ] ** Need to find another Android Device to test with (I have one). Emulator will not work. 
 - [ ] Add functionality to cards
