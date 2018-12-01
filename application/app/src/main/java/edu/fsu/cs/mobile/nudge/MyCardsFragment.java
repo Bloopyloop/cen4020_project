@@ -44,7 +44,7 @@ public class MyCardsFragment extends Fragment {
         ref = database.getReference("cards");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        rec =  (RecyclerView) view.findViewById(R.id.recyclerView);
+        rec =  (RecyclerView) view.findViewById(R.id.myCards_recyclerView);
         rec.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -58,6 +58,7 @@ public class MyCardsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -96,7 +97,7 @@ public class MyCardsFragment extends Fragment {
         for(int i = 1; i <= size; ++i){
             Card card = new Card();
 
-            card.cardTitle = "";
+            card.cardTitle = "myCards Test";
             card.displayName = "";
             card.cellNumber = "";
             card.homeNumber = "";

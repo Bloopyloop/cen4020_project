@@ -6,9 +6,10 @@
     tools:context=".ContactsFragment">
 
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/contacts_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="contacts fragment" />
+        android:layout_height="match_parent" />
+
 
 </FrameLayout>
