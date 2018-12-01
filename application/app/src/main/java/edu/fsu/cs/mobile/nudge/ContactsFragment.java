@@ -1,12 +1,15 @@
 package edu.fsu.cs.mobile.nudge;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -28,10 +31,10 @@ import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOption
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 
 import static android.app.Activity.RESULT_OK;
+import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
 
 public class ContactsFragment extends Fragment {
-    private final int BARCODE_REQ_CODE = 200;
     Button mButton;
 
     @Override
@@ -43,11 +46,10 @@ public class ContactsFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CameraActivity.class);
-                startActivity(intent);
+                    Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
+                    startActivity(cameraIntent);
             }
         });
         return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
-
 }

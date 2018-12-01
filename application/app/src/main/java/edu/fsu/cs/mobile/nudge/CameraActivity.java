@@ -1,12 +1,15 @@
 package edu.fsu.cs.mobile.nudge;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Camera;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,45 +25,34 @@ import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.wonderkiln.camerakit.CameraKitError;
-import com.wonderkiln.camerakit.CameraKitEvent;
-import com.wonderkiln.camerakit.CameraKitEventListener;
-import com.wonderkiln.camerakit.CameraKitImage;
-import com.wonderkiln.camerakit.CameraKitVideo;
-import com.wonderkiln.camerakit.CameraView;
 
 import java.util.List;
 
-import dmax.dialog.SpotsDialog;
-
 public class CameraActivity extends AppCompatActivity {
-    CameraView camera;
     Button btn, btn2;
-    AlertDialog waitDia;
-
-    @Override
-    protected void onResume() { super.onResume(); camera.start(); }
-
-    @Override
-    protected void onPause() {  super.onPause(); camera.stop(); }
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
+    private static final int CAMERA_REQUEST = 1888;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        camera = (CameraView) findViewById(R.id.camerakitview);
-        btn = (Button) findViewById(R.id.detect_button);
-        btn2 = (Button) findViewById(R.id.cancel_button);
+        this.btn = (Button) findViewById(R.id.detect_button);
+        this.btn2 = (Button) findViewById(R.id.cancel_button);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                camera.start();
-                camera.captureImage();
+                if (checkSelfPermission(Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA},
+                            200);
+                } else {
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, 200);
+                }
             }
         });
-
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,31 +60,29 @@ public class CameraActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        camera.addCameraKitListener(new CameraKitEventListener() {
-            @Override
-            public void onEvent(CameraKitEvent cameraKitEvent) {
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 200) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(CameraActivity.this, "camera permission granted", Toast.LENGTH_LONG).show();
+                Intent cameraIntent = new
+                        Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, 200);
+            } else {
+                Toast.makeText(CameraActivity.this, "camera permission denied", Toast.LENGTH_LONG).show();
             }
 
-            @Override
-            public void onError(CameraKitError cameraKitError) {
+        }
+    }
 
-            }
-
-            @Override
-            public void onImage(CameraKitImage cameraKitImage) {
-                Bitmap bitmap = cameraKitImage.getBitmap();
-                bitmap = Bitmap.createScaledBitmap(bitmap, camera.getWidth(), camera.getHeight(), false);
-                camera.stop();
-                runDetector(bitmap);
-            }
-
-            @Override
-            public void onVideo(CameraKitVideo cameraKitVideo) {
-
-            }
-        });
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            runDetector(photo);
+        }
     }
 
     private void runDetector(Bitmap bitmap) {

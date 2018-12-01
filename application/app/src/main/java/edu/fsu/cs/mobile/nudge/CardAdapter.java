@@ -20,6 +20,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     private List<Card> cardList;
     private Context qrContext;
     Bitmap bmp;
+    private String QRuid;
 
     public CardAdapter(List<Card> cardList){
         this.cardList = cardList;
@@ -31,7 +32,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     public void onBindViewHolder(final CardViewHolder cardViewHolder, int i){
         final QRCodeGenerator QRGen = new QRCodeGenerator(qrContext);
-        Card card = cardList.get(i);
+        final Card card = cardList.get(i);
         if(card.cardTitle.isEmpty() && card.displayName.isEmpty() && card.cellNumber.isEmpty() &&
                 card.workNumber.isEmpty() && card.homeNumber.isEmpty() && card.personalEmail.isEmpty() &&
                 card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
@@ -66,7 +67,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 public void onClick(View view) {
                     if (cardViewHolder.mQRButton.isPressed()) {
                         try {
-                            bmp = QRGen.generateQRCodeImage("Foobar");
+                            bmp = QRGen.generateQRCodeImage(card.getUid());
                             String path = QRGen.saveImage(bmp);
                         } catch (WriterException e) {
                             e.printStackTrace();
