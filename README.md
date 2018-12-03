@@ -17,9 +17,9 @@ Nudge is a digital business card application. Nudge allows users to quickly and 
 - [ ] Firebase Database
     - [X] Home Activity
     - [X] Make Card Fragment
-    - [ ] Contact Fragment
+    - [X] Contact Fragment
     - [X] My Cards Fragment 
-    - [ ] Add Social Media Accounts, Personal Website Links
+    - [X] Add Social Media Accounts, Personal Website Links
     - [ ] Add Document Upload
 - [ ] ZXing QR Generator
 - [ ] Firebase ML Vision Barcode Reader
@@ -27,7 +27,7 @@ Nudge is a digital business card application. Nudge allows users to quickly and 
     - [ ] ** Need to find another Android Device to test with (I have one). Emulator will not work. 
 - [ ] Add functionality to cards
     - [ ] Upload picture from phone
-    - [ ] Allow multiple customizable cards per user - Social Card, Professional Card, Education Card etc.
+    - [X] Allow multiple customizable cards per user - Social Card, Professional Card, Education Card etc.
     - [ ] Create alert to add to phone contacts 
 - [ ] Create different account/profile/card types - Business, Personal and Event   
 - [ ] Refactor UI after all functionality is implemented 

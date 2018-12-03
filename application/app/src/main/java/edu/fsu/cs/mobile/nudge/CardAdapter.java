@@ -2,15 +2,31 @@ package edu.fsu.cs.mobile.nudge;
 
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
+import java.io.IOException;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Button;
+import android.content.Context;
+import android.graphics.Bitmap;
+
+import android.widget.Toast;
+
+import android.util.Log;
+
+import com.google.zxing.WriterException;
+import android.widget.ProgressBar;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
     private List<Card> cardList;
+    private Context qrContext;
+    Bitmap bmp;
+    private String QRuid;
+    ProgressBar progress;
 
     public CardAdapter(List<Card> cardList){
         this.cardList = cardList;
@@ -20,8 +36,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         return cardList.size();
     }
 
-    public void onBindViewHolder(CardViewHolder cardViewHolder, int i){
-        Card card = cardList.get(i);
+    public void onBindViewHolder(final CardViewHolder cardViewHolder, int i){
+        //Card card = cardList.get(i);
+        final QRCodeGenerator QRGen = new QRCodeGenerator(qrContext);
+        final Card card = cardList.get(i);
+
         if ( card.cardTitle.isEmpty() && card.displayName.isEmpty() && card.cellNumber.isEmpty() &&
                 card.workNumber.isEmpty() && card.homeNumber.isEmpty() && card.personalEmail.isEmpty() &&
                 card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
@@ -37,6 +56,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             cardViewHolder.mLinkedin.setText("");
             cardViewHolder.mFacebook.setText("");
             cardViewHolder.mTwitter.setText("");
+            cardViewHolder.mQRButton.setVisibility(View.GONE);
 
         }
         else {
@@ -51,12 +71,50 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             cardViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
             cardViewHolder.mFacebook.setText("Facebook: " + card.facebook);
             cardViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+
+            try {
+                // set VISIBLE
+                bmp = QRGen.generateQRCodeImage(card.getCardID());
+                String path = QRGen.saveImage(bmp);
+                cardViewHolder.mQR.setImageBitmap(bmp);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+
+            // SET INVISIBLE
+
+
+            cardViewHolder.mQRButton.setOnClickListener(new View.OnClickListener() {
+
+                Boolean qrVisible = false;
+                @Override
+                public void onClick(View view) {
+
+                    if (!qrVisible) {
+                        Log.i("onClick", "Button Pressed");
+                        cardViewHolder.mQR.setVisibility(View.VISIBLE);
+                        cardViewHolder.mQRButton.setText("Hide QR");
+                        qrVisible = true;
+                    }
+                    else {
+                        cardViewHolder.mQRButton.setText("Show QR");
+                        cardViewHolder.mQR.setVisibility(View.GONE);
+                        qrVisible = false;
+                    }
+
+                }
+            });
+
+
         }
     }
+
 
     public CardViewHolder onCreateViewHolder (ViewGroup viewGroup, int i){
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.card_view_layout, viewGroup, false);
+
+        qrContext = viewGroup.getContext();
 
         return new CardViewHolder(itemView);
 
@@ -75,6 +133,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         TextView mLinkedin;
         TextView mFacebook;
         TextView mTwitter;
+        ImageView mQR;
+        Button mQRButton;
 
         public CardViewHolder(View view){
             super(view);
@@ -90,6 +150,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             mLinkedin = (TextView) view.findViewById(R.id.linkedin_card_textView);
             mFacebook = (TextView) view.findViewById(R.id.facebook_card_textView);
             mTwitter = (TextView) view.findViewById(R.id.twitter_card_textView);
+            mQR = (ImageView) view.findViewById(R.id.qr_imageView);
+            mQRButton = (Button) view.findViewById(R.id.show_qr_button);
 
         }
     }

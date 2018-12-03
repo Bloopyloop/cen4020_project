@@ -21,18 +21,38 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     public void onBindViewHolder(ContactsViewHolder contactsViewHolder, int i){
-        Card card = cardList.get(i);
+        final Card card = cardList.get(i);
 
-        contactsViewHolder.mName.setText(card.displayName);
-        contactsViewHolder.mCell.setText(card.cellNumber);
-        contactsViewHolder.mWorkNum.setText(card.workNumber);
-        contactsViewHolder.mHomeNum.setText(card.homeNumber);
-        contactsViewHolder.mEmail.setText(card.personalEmail);
-        contactsViewHolder.mWorkEmail.setText(card.workEmail);
-        contactsViewHolder.mWebsite.setText(card.website);
-        contactsViewHolder.mLinkedin.setText(card.linkedIn);
-        contactsViewHolder.mFacebook.setText(card.facebook);
-        contactsViewHolder.mTwitter.setText(card.twitter);
+
+
+        if ( card.cardTitle.isEmpty() && card.displayName.isEmpty() && card.cellNumber.isEmpty() &&
+                card.workNumber.isEmpty() && card.homeNumber.isEmpty() && card.personalEmail.isEmpty() &&
+                card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
+                card.facebook.isEmpty() && card.twitter.isEmpty()  ) {
+            contactsViewHolder.mName.setText("You don't have any Contacts!");
+            contactsViewHolder.mCell.setText("");
+            contactsViewHolder.mWorkNum.setText("");
+            contactsViewHolder.mHomeNum.setText("");
+            contactsViewHolder.mEmail.setText("");
+            contactsViewHolder.mWorkEmail.setText("");
+            contactsViewHolder.mWebsite.setText("");
+            contactsViewHolder.mLinkedin.setText("");
+            contactsViewHolder.mFacebook.setText("");
+            contactsViewHolder.mTwitter.setText("");
+
+        }
+        else {
+            contactsViewHolder.mName.setText(card.displayName);
+            contactsViewHolder.mCell.setText(card.cellNumber);
+            contactsViewHolder.mWorkNum.setText(card.workNumber);
+            contactsViewHolder.mHomeNum.setText(card.homeNumber);
+            contactsViewHolder.mEmail.setText(card.personalEmail);
+            contactsViewHolder.mWorkEmail.setText(card.workEmail);
+            contactsViewHolder.mWebsite.setText(card.website);
+            contactsViewHolder.mLinkedin.setText(card.linkedIn);
+            contactsViewHolder.mFacebook.setText(card.facebook);
+            contactsViewHolder.mTwitter.setText(card.twitter);
+        }
     }
 
     public ContactsViewHolder onCreateViewHolder (ViewGroup viewGroup, int i){

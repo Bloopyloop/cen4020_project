@@ -14,6 +14,7 @@ public class Card {
     String linkedIn;
     String facebook;
     String twitter;
+    String cardID;
 
     public Card() {
     }
@@ -129,4 +130,11 @@ public class Card {
         this.twitter = twitter;
     }
 
+    public String getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(String cardID) {
+        this.cardID = cardID;
+    }
 }

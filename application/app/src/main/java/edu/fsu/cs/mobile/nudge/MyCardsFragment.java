@@ -16,6 +16,8 @@ import android.widget.Toast;
 import java.util.Map;
 import java.util.HashMap;
 
+import android.widget.ProgressBar;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +35,7 @@ public class MyCardsFragment extends Fragment {
     Card printCard;
     List<Card> listCards;
     RecyclerView rec;
+    ProgressBar progress;
 
 
     @Override
@@ -49,6 +52,8 @@ public class MyCardsFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rec.setLayoutManager(llm);
+
+        progress = (ProgressBar) view.findViewById(R.id.myCards_progressBar);
 
         listCards = new ArrayList<>();
 
@@ -71,9 +76,10 @@ public class MyCardsFragment extends Fragment {
                         printCard = cardSnapshot.getValue(Card.class);
 
                         listCards.add(printCard);
-
+                        progress.setVisibility(View.VISIBLE);
                         CardAdapter ca = new CardAdapter(listCards);
                         rec.setAdapter(ca);
+                        progress.setVisibility(View.GONE);
                     }
 
                 }
@@ -97,7 +103,7 @@ public class MyCardsFragment extends Fragment {
         for(int i = 1; i <= size; ++i){
             Card card = new Card();
 
-            card.cardTitle = "myCards Test";
+            card.cardTitle = "";
             card.displayName = "";
             card.cellNumber = "";
             card.homeNumber = "";

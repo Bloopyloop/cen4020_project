@@ -42,5 +42,6 @@
 
 
     <string name="no_cards">Click Make Card to Make Your First Card!</string>
+    <string name="title_activity_camera">CameraActivity</string>
 
 </resources>

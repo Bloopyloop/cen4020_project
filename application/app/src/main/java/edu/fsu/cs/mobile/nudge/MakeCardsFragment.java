@@ -84,6 +84,7 @@ public class MakeCardsFragment extends Fragment {
                 card.setLinkedIn(mLinkedin.getText().toString());
                 card.setFacebook(mFacebook.getText().toString());
                 card.setTwitter(mTwitter.getText().toString());
+                card.setCardID(key);
 
                 ref.child(key).setValue(card);
 
