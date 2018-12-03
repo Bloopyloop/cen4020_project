@@ -24,7 +24,9 @@ import android.util.Log;
 
 public class MakeCardsFragment extends Fragment {
     FirebaseDatabase database;
-    DatabaseReference ref;
+    DatabaseReference ref_user;
+    DatabaseReference ref_cards;
+
     FirebaseUser user;
     Button mButton;
     EditText mCardTitle;
@@ -44,9 +46,11 @@ public class MakeCardsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("cards");
-
         user = FirebaseAuth.getInstance().getCurrentUser();
+        ref_user = database.getReference(user.getUid() + "/cards");
+        ref_cards = database.getReference("/cards");
+
+
         View view = inflater.inflate(R.layout.fragment_make_card, container, false);
 
         mButton = (Button) view.findViewById(R.id.create_Button);
@@ -68,7 +72,7 @@ public class MakeCardsFragment extends Fragment {
             public void onClick(View v) {
 
                 String uid = user.getUid();
-                String key = ref.push().getKey();
+                String key = ref_user.push().getKey();
 
                 Card card = new Card();
 
@@ -86,7 +90,8 @@ public class MakeCardsFragment extends Fragment {
                 card.setTwitter(mTwitter.getText().toString());
                 card.setCardID(key);
 
-                ref.child(key).setValue(card);
+                ref_user.child(key).setValue(card);
+                ref_cards.child(key).setValue(card);
 
                 ((HomeActivity) getActivity()).setupNavigation();
             }

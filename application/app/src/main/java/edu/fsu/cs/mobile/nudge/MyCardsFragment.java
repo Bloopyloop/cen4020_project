@@ -44,8 +44,8 @@ public class MyCardsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_cards, container, false);
 
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("cards");
         user = FirebaseAuth.getInstance().getCurrentUser();
+        ref = database.getReference(user.getUid() + "/cards");
 
         rec =  (RecyclerView) view.findViewById(R.id.myCards_recyclerView);
         rec.setHasFixedSize(true);
@@ -86,6 +86,7 @@ public class MyCardsFragment extends Fragment {
                 else {
                     CardAdapter ca = new CardAdapter(createList(1));
                     rec.setAdapter(ca);
+                    progress.setVisibility(View.GONE);
                 }
             }
 

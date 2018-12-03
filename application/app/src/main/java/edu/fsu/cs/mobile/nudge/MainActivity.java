@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void signUpButton(View view){
         // uncomment before submission
-        //Intent intent = new Intent(this, SignUpActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
 
         // short cut to home for testing purposes
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, HomeActivity.class);
+        //startActivity(intent);
     }
 
 

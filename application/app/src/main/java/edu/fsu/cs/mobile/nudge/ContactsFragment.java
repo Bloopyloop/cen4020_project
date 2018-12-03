@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,6 +34,7 @@ import java.util.List;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
@@ -47,7 +50,10 @@ import android.util.Log;
 public class ContactsFragment extends Fragment {
 
     FirebaseDatabase database;
-    DatabaseReference ref;
+    DatabaseReference ref_put;
+    DatabaseReference ref_get;
+
+
     FirebaseUser user;
     Card printCard;
     List<Card> listCards;
@@ -72,7 +78,9 @@ public class ContactsFragment extends Fragment {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("contacts/" + user.getUid());
+        ref_put = database.getReference(user.getUid() + "/contacts");
+
+
 
         mQRButton = (Button) view.findViewById(R.id.qr_button);
 
@@ -94,12 +102,50 @@ public class ContactsFragment extends Fragment {
 
         listCards = new ArrayList<>();
 
-        ContactsAdapter ca = new ContactsAdapter(createList(1));
-        rec.setAdapter(ca);
+        // load empty card
+        //ContactsAdapter ca = new ContactsAdapter(createList(1));
+        //rec.setAdapter(ca);
 
-        // query from database, get contacts, make another query to get
+        // query from database, get contacts
+        // make another query to get Card based on contacts.children values
+        // create ContactsAdapter
+        // add ProgressBar
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ref_put.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listCards.clear();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) {
+                        printCard = cardSnapshot.getValue(Card.class);
+
+                        listCards.add(printCard);
+                        //progress.setVisibility(View.VISIBLE);
+                        ContactsAdapter ca = new ContactsAdapter(listCards);
+                        rec.setAdapter(ca);
+                        //progress.setVisibility(View.GONE);
+                    }
+
+                }
+                else {
+                    ContactsAdapter ca = new ContactsAdapter(createList(1));
+                    rec.setAdapter(ca);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private List<Card> createList(int size){
@@ -177,10 +223,32 @@ public class ContactsFragment extends Fragment {
                             Toast.makeText(getActivity(), rawValue, Toast.LENGTH_LONG).show();
                             Log.i("postPicture", rawValue);
 
-                            String key = ref.push().getKey();
+                            final String key = ref_put.push().getKey();
 
                             if (key != null) {
-                                ref.child(key).setValue(rawValue);
+                                //ref_put.child(key).setValue(rawValue);
+                                ref_get = database.getReference("/cards");
+                                ref_get.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        List<Card> cardsList = new ArrayList<>();
+                                        Card tempCard;
+
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) {
+                                                tempCard = cardSnapshot.getValue(Card.class);
+
+                                                ref_put.child(key).setValue(tempCard);
+                                            }
+                                        }
+
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             }
 
                         }

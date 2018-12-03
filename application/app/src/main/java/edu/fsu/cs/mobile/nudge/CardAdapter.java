@@ -73,16 +73,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             cardViewHolder.mTwitter.setText("Twitter: " + card.twitter);
 
             try {
-                // set VISIBLE
                 bmp = QRGen.generateQRCodeImage(card.getCardID());
                 String path = QRGen.saveImage(bmp);
                 cardViewHolder.mQR.setImageBitmap(bmp);
             } catch (WriterException e) {
                 e.printStackTrace();
             }
-
-            // SET INVISIBLE
-
 
             cardViewHolder.mQRButton.setOnClickListener(new View.OnClickListener() {
 

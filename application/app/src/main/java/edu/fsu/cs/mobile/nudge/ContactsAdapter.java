@@ -42,16 +42,16 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
         }
         else {
-            contactsViewHolder.mName.setText(card.displayName);
-            contactsViewHolder.mCell.setText(card.cellNumber);
-            contactsViewHolder.mWorkNum.setText(card.workNumber);
-            contactsViewHolder.mHomeNum.setText(card.homeNumber);
-            contactsViewHolder.mEmail.setText(card.personalEmail);
-            contactsViewHolder.mWorkEmail.setText(card.workEmail);
-            contactsViewHolder.mWebsite.setText(card.website);
-            contactsViewHolder.mLinkedin.setText(card.linkedIn);
-            contactsViewHolder.mFacebook.setText(card.facebook);
-            contactsViewHolder.mTwitter.setText(card.twitter);
+            contactsViewHolder.mName.setText("Name: " + card.displayName);
+            contactsViewHolder.mCell.setText("Cell: " + card.cellNumber);
+            contactsViewHolder.mWorkNum.setText("Work Number: " + card.workNumber);
+            contactsViewHolder.mHomeNum.setText("Home Number: " + card.homeNumber);
+            contactsViewHolder.mEmail.setText("Email: " + card.personalEmail);
+            contactsViewHolder.mWorkEmail.setText("Work Email: " + card.workEmail);
+            contactsViewHolder.mWebsite.setText("Website: " + card.website);
+            contactsViewHolder.mLinkedin.setText("LinkedIn: " +card.linkedIn);
+            contactsViewHolder.mFacebook.setText("Facebook: " +card.facebook);
+            contactsViewHolder.mTwitter.setText("Twitter: " + card.twitter);
         }
     }
 
