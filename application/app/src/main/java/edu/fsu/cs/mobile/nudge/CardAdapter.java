@@ -46,6 +46,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
                 card.facebook.isEmpty() && card.twitter.isEmpty()  ) {
             cardViewHolder.mTitle.setText("Click Add Card to Make your First Card! ");
+            /*
             cardViewHolder.mName.setText("");
             cardViewHolder.mCell.setText("");
             cardViewHolder.mWorkNum.setText("");
@@ -56,21 +57,89 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             cardViewHolder.mLinkedin.setText("");
             cardViewHolder.mFacebook.setText("");
             cardViewHolder.mTwitter.setText("");
+            */
+            cardViewHolder.mName.setVisibility(View.GONE);
+            cardViewHolder.mCell.setVisibility(View.GONE);
+            cardViewHolder.mWorkNum.setVisibility(View.GONE);
+            cardViewHolder.mHomeNum.setVisibility(View.GONE);
+            cardViewHolder.mEmail.setVisibility(View.GONE);
+            cardViewHolder.mWorkEmail.setVisibility(View.GONE);
+            cardViewHolder.mWebsite.setVisibility(View.GONE);
+            cardViewHolder.mLinkedin.setVisibility(View.GONE);
+            cardViewHolder.mFacebook.setVisibility(View.GONE);
+            cardViewHolder.mTwitter.setVisibility(View.GONE);
+
             cardViewHolder.mQRButton.setVisibility(View.GONE);
 
         }
         else {
-            cardViewHolder.mTitle.setText("Title: " + card.cardTitle);
-            cardViewHolder.mName.setText("Name: " + card.displayName);
-            cardViewHolder.mCell.setText("Cell: " + card.cellNumber);
-            cardViewHolder.mWorkNum.setText("Work Number: " + card.workNumber);
-            cardViewHolder.mHomeNum.setText("Home Number: " + card.homeNumber);
-            cardViewHolder.mEmail.setText("Email: " + card.personalEmail);
-            cardViewHolder.mWorkEmail.setText("Work Email: " + card.workEmail);
-            cardViewHolder.mWebsite.setText("Website: " + card.website);
-            cardViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
-            cardViewHolder.mFacebook.setText("Facebook: " + card.facebook);
-            cardViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+            if (card.cardTitle.isEmpty()){
+                cardViewHolder.mTitle.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mTitle.setText("Title: " + card.cardTitle);
+            }
+            if (card.displayName.isEmpty()){
+                cardViewHolder.mName.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mName.setText("Name: " + card.displayName);
+            }
+            if (card.cellNumber.isEmpty()){
+                cardViewHolder.mCell.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mCell.setText("Cell: " + card.cellNumber);
+            }
+            if ( card.workNumber.isEmpty()){
+                cardViewHolder.mWorkNum.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mWorkNum.setText("Work Number: " + card.workNumber);
+            }
+            if (card.homeNumber.isEmpty()){
+                cardViewHolder.mHomeNum.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mHomeNum.setText("Home Number: " + card.homeNumber);
+            }
+            if (card.personalEmail.isEmpty()){
+                cardViewHolder.mEmail.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mEmail.setText("Email: " + card.personalEmail);
+            }
+            if (card.workEmail.isEmpty()){
+                cardViewHolder.mWorkEmail.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mWorkEmail.setText("Work Email: " + card.workEmail);
+            }
+            if (card.website.isEmpty()){
+                cardViewHolder.mWebsite.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mWebsite.setText("Website: " + card.website);
+            }
+            if (card.linkedIn.isEmpty()){
+                cardViewHolder.mLinkedin.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
+            }
+            if (card.facebook.isEmpty()){
+                cardViewHolder.mFacebook.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mFacebook.setText("Facebook: " + card.facebook);
+            }
+            if (card.twitter.isEmpty()){
+                cardViewHolder.mTwitter.setVisibility(View.GONE);
+            }
+            else {
+                cardViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+            }
+
 
             try {
                 bmp = QRGen.generateQRCodeImage(card.getCardID());

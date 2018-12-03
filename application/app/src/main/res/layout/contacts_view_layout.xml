@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/displayName_contact_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/display_name_"
             android:background="@color/cardview_light_background"

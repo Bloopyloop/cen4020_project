@@ -30,6 +30,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
                 card.facebook.isEmpty() && card.twitter.isEmpty()  ) {
             contactsViewHolder.mName.setText("You don't have any Contacts!");
+            /*
             contactsViewHolder.mCell.setText("");
             contactsViewHolder.mWorkNum.setText("");
             contactsViewHolder.mHomeNum.setText("");
@@ -39,9 +40,20 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             contactsViewHolder.mLinkedin.setText("");
             contactsViewHolder.mFacebook.setText("");
             contactsViewHolder.mTwitter.setText("");
+            */
+            contactsViewHolder.mCell.setVisibility(View.GONE);
+            contactsViewHolder.mWorkNum.setVisibility(View.GONE);
+            contactsViewHolder.mHomeNum.setVisibility(View.GONE);
+            contactsViewHolder.mEmail.setVisibility(View.GONE);
+            contactsViewHolder.mWorkEmail.setVisibility(View.GONE);
+            contactsViewHolder.mWebsite.setVisibility(View.GONE);
+            contactsViewHolder.mLinkedin.setVisibility(View.GONE);
+            contactsViewHolder.mFacebook.setVisibility(View.GONE);
+            contactsViewHolder.mTwitter.setVisibility(View.GONE);
 
         }
         else {
+            /*
             contactsViewHolder.mName.setText("Name: " + card.displayName);
             contactsViewHolder.mCell.setText("Cell: " + card.cellNumber);
             contactsViewHolder.mWorkNum.setText("Work Number: " + card.workNumber);
@@ -52,6 +64,68 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             contactsViewHolder.mLinkedin.setText("LinkedIn: " +card.linkedIn);
             contactsViewHolder.mFacebook.setText("Facebook: " +card.facebook);
             contactsViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+            */
+
+            if (card.displayName.isEmpty()){
+                contactsViewHolder.mName.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mName.setText("Name: " + card.displayName);
+            }
+            if (card.cellNumber.isEmpty()){
+                contactsViewHolder.mCell.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mCell.setText("Cell: " + card.cellNumber);
+            }
+            if ( card.workNumber.isEmpty()){
+                contactsViewHolder.mWorkNum.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mWorkNum.setText("Work Number: " + card.workNumber);
+            }
+            if (card.homeNumber.isEmpty()){
+                contactsViewHolder.mHomeNum.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mHomeNum.setText("Home Number: " + card.homeNumber);
+            }
+            if (card.personalEmail.isEmpty()){
+                contactsViewHolder.mEmail.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mEmail.setText("Email: " + card.personalEmail);
+            }
+            if (card.workEmail.isEmpty()){
+                contactsViewHolder.mWorkEmail.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mWorkEmail.setText("Work Email: " + card.workEmail);
+            }
+            if (card.website.isEmpty()){
+                contactsViewHolder.mWebsite.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mWebsite.setText("Website: " + card.website);
+            }
+            if (card.linkedIn.isEmpty()){
+                contactsViewHolder.mLinkedin.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
+            }
+            if (card.facebook.isEmpty()){
+                contactsViewHolder.mFacebook.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mFacebook.setText("Facebook: " + card.facebook);
+            }
+            if (card.twitter.isEmpty()){
+                contactsViewHolder.mTwitter.setVisibility(View.GONE);
+            }
+            else {
+                contactsViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+            }
         }
     }
 
