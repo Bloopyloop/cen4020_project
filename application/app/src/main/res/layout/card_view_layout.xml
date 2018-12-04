@@ -10,153 +10,182 @@
     android:layout_margin="5dp">
 
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title_card_textView"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:background="@color/cardview_light_background"
-            android:text="@string/card_title"
             android:gravity="center_vertical"
+            android:text="@string/card_title"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/name_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/display_name"
             android:gravity="center_vertical"
+            android:text="@string/display_name"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_card_textView" />
 
         <TextView
             android:id="@+id/cell_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/name_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/cell_phone"
             android:gravity="center_vertical"
+            android:text="@string/cell_phone"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_card_textView" />
 
         <TextView
             android:id="@+id/workNumber_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cell_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/work_phone"
             android:gravity="center_vertical"
+            android:text="@string/work_phone"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cell_card_textView" />
 
         <TextView
             android:id="@+id/homeNumber_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/workNumber_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/home_phone"
             android:gravity="center_vertical"
+            android:text="@string/home_phone"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workNumber_card_textView" />
 
         <TextView
             android:id="@+id/personalEmail_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/homeNumber_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/personal_email"
             android:gravity="center_vertical"
+            android:text="@string/personal_email"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeNumber_card_textView" />
 
         <TextView
             android:id="@+id/workEmail_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/personalEmail_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/work_email"
             android:gravity="center_vertical"
+            android:text="@string/work_email"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/personalEmail_card_textView" />
 
         <TextView
             android:id="@+id/website_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/workEmail_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/website"
             android:gravity="center_vertical"
+            android:text="@string/website"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workEmail_card_textView" />
 
         <TextView
             android:id="@+id/linkedin_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/website_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/linkedin"
             android:gravity="center_vertical"
+            android:text="@string/linkedin"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/website_card_textView" />
 
         <TextView
             android:id="@+id/facebook_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linkedin_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/facebook"
             android:gravity="center_vertical"
+            android:text="@string/facebook"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linkedin_card_textView" />
 
         <TextView
             android:id="@+id/twitter_card_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/facebook_card_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/twitter"
             android:gravity="center_vertical"
+            android:text="@string/twitter"
             android:textColor="@color/darkText"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/facebook_card_textView" />
 
         <ImageView
             android:id="@+id/qr_imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/twitter_card_textView"
-            app:srcCompat="@android:drawable/ic_delete"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/twitter_card_textView"
+            app:srcCompat="@android:drawable/ic_delete" />
 
         <Button
             android:id="@+id/show_qr_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/qr_imageView"
-            android:text="Show QR"/>
+            android:text="Show QR"
+            app:layout_constraintEnd_toStartOf="@+id/send_nfc_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/qr_imageView" />
 
         <Button
             android:id="@+id/send_nfc_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send via NFC"
-            android:layout_below="@id/show_qr_button"
-            />
+            android:text="Send via Beam"
+            app:layout_constraintBaseline_toBaselineOf="@id/show_qr_button"
+            app:layout_constraintEnd_toStartOf="@+id/delete_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/show_qr_button" />
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:layout_constraintBaseline_toBaselineOf="@id/send_nfc_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/send_nfc_button" />
 
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

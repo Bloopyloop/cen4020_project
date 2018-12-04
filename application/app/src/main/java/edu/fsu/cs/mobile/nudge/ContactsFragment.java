@@ -67,6 +67,7 @@ public class ContactsFragment extends Fragment {
 
     Button mQRButton;
     Button mBeam;
+    Button mDelete;
 
 
 
@@ -90,6 +91,7 @@ public class ContactsFragment extends Fragment {
 
         mQRButton = (Button) view.findViewById(R.id.qr_button);
         mBeam = (Button) view.findViewById(R.id.beam_button);
+
 
         mBeam.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -231,7 +233,7 @@ public class ContactsFragment extends Fragment {
                             Point[] corners = barcode.getCornerPoints();
                             String rawValue = barcode.getRawValue();
                             int valueType = barcode.getValueType();
-                            Toast.makeText(getActivity(), rawValue, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getActivity(), rawValue, Toast.LENGTH_LONG).show();
                             Log.i("postPicture", rawValue);
 
                             final String key = ref_put.push().getKey();

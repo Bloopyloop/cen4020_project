@@ -27,15 +27,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ValueEventListener;
 
 
+
 public class MyCardsFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference ref;
     FirebaseUser user;
+
     Card printCard;
     List<Card> listCards;
     RecyclerView rec;
     ProgressBar progress;
+
 
 
     @Override

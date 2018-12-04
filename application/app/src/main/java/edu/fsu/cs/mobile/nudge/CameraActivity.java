@@ -106,7 +106,7 @@ public class CameraActivity extends AppCompatActivity {
                             Point[] corners = barcode.getCornerPoints();
                             String rawValue = barcode.getRawValue();
                             int valueType = barcode.getValueType();
-                            Toast.makeText(CameraActivity.this, rawValue, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(CameraActivity.this, rawValue, Toast.LENGTH_LONG).show();
                             /*switch(valueType) {
                                 case FirebaseVisionBarcode.TYPE_URL:
                                     String title = barcode.getUrl().getTitle();

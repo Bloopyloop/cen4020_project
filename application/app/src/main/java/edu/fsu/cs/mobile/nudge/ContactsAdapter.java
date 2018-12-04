@@ -1,5 +1,6 @@
 package edu.fsu.cs.mobile.nudge;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 
@@ -7,6 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.Query;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>{
 
@@ -22,8 +33,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     public void onBindViewHolder(ContactsViewHolder contactsViewHolder, int i){
         final Card card = cardList.get(i);
-
-
 
         if ( card.cardTitle.isEmpty() && card.displayName.isEmpty() && card.cellNumber.isEmpty() &&
                 card.workNumber.isEmpty() && card.homeNumber.isEmpty() && card.personalEmail.isEmpty() &&
@@ -50,6 +59,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             contactsViewHolder.mLinkedin.setVisibility(View.GONE);
             contactsViewHolder.mFacebook.setVisibility(View.GONE);
             contactsViewHolder.mTwitter.setVisibility(View.GONE);
+            contactsViewHolder.mDelete.setVisibility(View.GONE);
 
         }
         else {
@@ -126,6 +136,30 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             else {
                 contactsViewHolder.mTwitter.setText("Twitter: " + card.twitter);
             }
+
+            contactsViewHolder.mDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference ref = database.getReference(user.getUid() + "/contacts");
+                    Query query = ref.orderByChild("cardID").equalTo(card.cardID);
+
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                snapshot.getRef().removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            });
         }
     }
 
@@ -150,6 +184,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         TextView mFacebook;
         TextView mTwitter;
 
+        Button mDelete;
+
         public ContactsViewHolder(View view){
             super(view);
 
@@ -163,8 +199,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             mLinkedin = (TextView) view.findViewById(R.id.linkedin_contact_textView);
             mFacebook = (TextView) view.findViewById(R.id.facebook_contact_textView);
             mTwitter = (TextView) view.findViewById(R.id.twitter_contact_textView);
-
-
+            mDelete = (Button) view.findViewById(R.id.delete_contact_button);
         }
     }
 }

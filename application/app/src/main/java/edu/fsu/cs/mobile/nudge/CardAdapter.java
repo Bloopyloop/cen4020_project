@@ -1,6 +1,7 @@
 package edu.fsu.cs.mobile.nudge;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import java.io.IOException;
@@ -20,8 +21,17 @@ import android.content.Intent;
 
 import android.util.Log;
 
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.WriterException;
 import android.widget.ProgressBar;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
@@ -75,6 +85,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             cardViewHolder.mTwitter.setVisibility(View.GONE);
 
             cardViewHolder.mQRButton.setVisibility(View.GONE);
+            cardViewHolder.mNFCButton.setVisibility(View.GONE);
+            cardViewHolder.mDelete.setVisibility(View.GONE);
 
         }
         else {
@@ -189,6 +201,45 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 }
             });
 
+            cardViewHolder.mDelete.setOnClickListener( new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    DatabaseReference ref1 = FirebaseDatabase.getInstance()
+                            .getReference(user.getUid() + "/cards");
+
+                    ref1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ref1.child(card.cardID).removeValue();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference ref2 = FirebaseDatabase.getInstance()
+                            .getReference("/cards");
+
+                    ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ref2.child(card.cardID).removeValue();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+                }
+            });
+
 
         }
     }
@@ -219,6 +270,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         ImageView mQR;
         Button mQRButton;
         Button mNFCButton;
+        Button mDelete;
 
         public CardViewHolder(View view){
             super(view);
@@ -237,6 +289,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             mQR = (ImageView) view.findViewById(R.id.qr_imageView);
             mQRButton = (Button) view.findViewById(R.id.show_qr_button);
             mNFCButton = (Button) view.findViewById(R.id.send_nfc_button);
+            mDelete = (Button) view.findViewById(R.id.delete_button);
         }
     }
 }
