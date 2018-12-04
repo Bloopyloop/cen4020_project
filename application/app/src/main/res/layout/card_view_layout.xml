@@ -149,10 +149,14 @@
             android:layout_below="@id/qr_imageView"
             android:text="Show QR"/>
 
+        <Button
+            android:id="@+id/send_nfc_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send via NFC"
+            android:layout_below="@id/show_qr_button"
+            />
 
 
     </RelativeLayout>
-
-
-
 </android.support.v7.widget.CardView>

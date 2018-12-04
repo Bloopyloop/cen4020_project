@@ -1,5 +1,6 @@
 package edu.fsu.cs.mobile.nudge;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import java.io.IOException;
@@ -12,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.Button;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 
 import android.widget.Toast;
+import android.content.Intent;
 
 import android.util.Log;
 
@@ -46,6 +49,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 card.workEmail.isEmpty() && card.website.isEmpty() && card.linkedIn.isEmpty() &&
                 card.facebook.isEmpty() && card.twitter.isEmpty()  ) {
             cardViewHolder.mTitle.setText("Click Add Card to Make your First Card! ");
+
             /*
             cardViewHolder.mName.setText("");
             cardViewHolder.mCell.setText("");
@@ -58,6 +62,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             cardViewHolder.mFacebook.setText("");
             cardViewHolder.mTwitter.setText("");
             */
+
             cardViewHolder.mName.setVisibility(View.GONE);
             cardViewHolder.mCell.setVisibility(View.GONE);
             cardViewHolder.mWorkNum.setVisibility(View.GONE);
@@ -170,10 +175,23 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 }
             });
 
+            cardViewHolder.mNFCButton.setOnClickListener( new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("cardID", card.cardID);
+                    Intent intent = new Intent(view.getContext(), NFCsend.class);
+                    intent.putExtras(bundle);
+                    view.getContext().startActivity(intent);
+
+                    // send card.cardID;
+
+                }
+            });
+
 
         }
     }
-
 
     public CardViewHolder onCreateViewHolder (ViewGroup viewGroup, int i){
         View itemView = LayoutInflater.from(viewGroup.getContext())
@@ -200,6 +218,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         TextView mTwitter;
         ImageView mQR;
         Button mQRButton;
+        Button mNFCButton;
 
         public CardViewHolder(View view){
             super(view);
@@ -217,7 +236,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             mTwitter = (TextView) view.findViewById(R.id.twitter_card_textView);
             mQR = (ImageView) view.findViewById(R.id.qr_imageView);
             mQRButton = (Button) view.findViewById(R.id.show_qr_button);
-
+            mNFCButton = (Button) view.findViewById(R.id.send_nfc_button);
         }
     }
 }

@@ -43,6 +43,9 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 
 import static android.app.Activity.RESULT_OK;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
+import static android.support.v4.content.ContextCompat.startActivities;
+
+
 import android.util.Log;
 
 
@@ -63,6 +66,9 @@ public class ContactsFragment extends Fragment {
     private static final int CAMERA_REQUEST = 1888;
 
     Button mQRButton;
+    Button mBeam;
+
+
 
 
     @Override
@@ -83,8 +89,21 @@ public class ContactsFragment extends Fragment {
 
 
         mQRButton = (Button) view.findViewById(R.id.qr_button);
+        mBeam = (Button) view.findViewById(R.id.beam_button);
 
-
+        mBeam.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkSelfPermission(getActivity(), Manifest.permission.NFC)
+                        != PackageManager.PERMISSION_GRANTED){
+                    requestPermissions(new String[] {Manifest.permission.NFC}, 300);
+                }
+                else {
+                    Intent intent = new Intent(getActivity(), NFCreceive.class);
+                    startActivityForResult(intent, 300);
+                }
+            }
+        });
 
         mQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +121,6 @@ public class ContactsFragment extends Fragment {
 
         listCards = new ArrayList<>();
 
-        // load empty card
-        //ContactsAdapter ca = new ContactsAdapter(createList(1));
-        //rec.setAdapter(ca);
-
-        // query from database, get contacts
-        // make another query to get Card based on contacts.children values
-        // create ContactsAdapter
-        // add ProgressBar
-
         return view;
     }
 
@@ -127,16 +137,17 @@ public class ContactsFragment extends Fragment {
                         printCard = cardSnapshot.getValue(Card.class);
 
                         listCards.add(printCard);
-                        //progress.setVisibility(View.VISIBLE);
+
                         ContactsAdapter ca = new ContactsAdapter(listCards);
                         rec.setAdapter(ca);
-                        //progress.setVisibility(View.GONE);
+
                     }
 
                 }
                 else {
                     ContactsAdapter ca = new ContactsAdapter(createList(1));
                     rec.setAdapter(ca);
+
                 }
             }
 
@@ -236,11 +247,9 @@ public class ContactsFragment extends Fragment {
                                         Card tempCard;
 
                                         if (dataSnapshot.exists()) {
-                                            for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) {
-                                                tempCard = cardSnapshot.getValue(Card.class);
 
-                                                ref_put.child(key).setValue(tempCard);
-                                            }
+                                            tempCard = dataSnapshot.child(rawValue).getValue(Card.class);
+                                            ref_put.child(key).setValue(tempCard);
                                         }
 
                                     }
