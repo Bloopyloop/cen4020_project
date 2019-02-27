@@ -1,5 +1,5 @@
-# Nudge Android  #
-## CEN 4020: Software Engineering I Group Project #
+# Nudge: Android  #
+## CEN 4020: Software Engineering Group Project #
 
 ### Overview: #
 Nudge is a digital business card application. Nudge allows users to quickly and accurately exchange information electronically. The user is able to create his “card” by adding his contact information, professional information, personal website links and even documents such as a resume to his profile. This information is saved to the database and each card created is issued a unique ID. A QR code is generated from this unique ID, allowing the user to quickly share his information with another user by simply scanning the QR code.
