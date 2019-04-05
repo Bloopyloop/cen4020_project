@@ -141,13 +141,6 @@ public class NFCreceive extends AppCompatActivity {
     // 2) ACTION_TECH_DISCOVERED
     // 3) ACTION_TAG_DISCOVERED
 
-    // always try to match the one with the highest priority, cause ACTION_TAG_DISCOVERED is the most
-    // general case and might be intercepted by some other apps installed on your device as well
-
-    // When several apps can match the same intent Android OS will bring up an app chooser dialog
-    // which is undesirable, because user will most likely have to move his device from the tag or another
-    // NFC device thus breaking a connection, as it's a short range
-
     public void enableForegroundDispatch(AppCompatActivity activity, NfcAdapter adapter) {
 
         // here we are setting up receiving activity for a foreground dispatch

@@ -1,11 +1,13 @@
 package edu.fsu.cs.mobile.nudge;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import java.io.IOException;
 
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -137,24 +139,28 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             }
             else {
                 cardViewHolder.mWebsite.setText("Website: " + card.website);
+                Linkify.addLinks(cardViewHolder.mWebsite, Linkify.ALL);
             }
             if (card.linkedIn.isEmpty()){
                 cardViewHolder.mLinkedin.setVisibility(View.GONE);
             }
             else {
                 cardViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
+                Linkify.addLinks(cardViewHolder.mLinkedin, Linkify.ALL);
             }
             if (card.facebook.isEmpty()){
                 cardViewHolder.mFacebook.setVisibility(View.GONE);
             }
             else {
                 cardViewHolder.mFacebook.setText("Facebook: " + card.facebook);
+                Linkify.addLinks(cardViewHolder.mFacebook, Linkify.ALL);
             }
             if (card.twitter.isEmpty()){
                 cardViewHolder.mTwitter.setVisibility(View.GONE);
             }
             else {
                 cardViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+                Linkify.addLinks(cardViewHolder.mTwitter, Linkify.ALL);
             }
 
 
@@ -235,8 +241,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                         }
                     });
 
-
-
                 }
             });
 
@@ -274,18 +278,30 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
         public CardViewHolder(View view){
             super(view);
-
+            Typeface typeface = view.getContext().getResources().getFont(R.font.montserrat_regular);
+            Typeface typefaceBold = view.getContext().getResources().getFont(R.font.montserrat_bold);
             mTitle = (TextView) view.findViewById(R.id.title_card_textView);
+            mTitle.setTypeface(typefaceBold);
             mName = (TextView) view.findViewById(R.id.name_card_textView);
+            mName.setTypeface(typeface);
             mCell = (TextView) view.findViewById(R.id.cell_card_textView);
+            mCell.setTypeface(typeface);
             mWorkNum = (TextView) view.findViewById(R.id.workNumber_card_textView);
+            mWorkNum.setTypeface(typeface);
             mHomeNum = (TextView) view.findViewById(R.id.homeNumber_card_textView);
+            mHomeNum.setTypeface(typeface);
             mEmail = (TextView) view.findViewById(R.id.personalEmail_card_textView);
+            mEmail.setTypeface(typeface);
             mWorkEmail = (TextView) view.findViewById(R.id.workEmail_card_textView);
+            mWorkEmail.setTypeface(typeface);
             mWebsite = (TextView) view.findViewById(R.id.website_card_textView);
+            mWebsite.setTypeface(typeface);
             mLinkedin = (TextView) view.findViewById(R.id.linkedin_card_textView);
+            mLinkedin.setTypeface(typeface);
             mFacebook = (TextView) view.findViewById(R.id.facebook_card_textView);
+            mFacebook.setTypeface(typeface);
             mTwitter = (TextView) view.findViewById(R.id.twitter_card_textView);
+            mTwitter.setTypeface(typeface);
             mQR = (ImageView) view.findViewById(R.id.qr_imageView);
             mQRButton = (Button) view.findViewById(R.id.show_qr_button);
             mNFCButton = (Button) view.findViewById(R.id.send_nfc_button);

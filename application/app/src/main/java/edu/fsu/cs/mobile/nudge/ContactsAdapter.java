@@ -1,9 +1,12 @@
 package edu.fsu.cs.mobile.nudge;
 
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,24 +120,28 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             }
             else {
                 contactsViewHolder.mWebsite.setText("Website: " + card.website);
+                Linkify.addLinks(contactsViewHolder.mWebsite, Linkify.ALL);
             }
             if (card.linkedIn.isEmpty()){
                 contactsViewHolder.mLinkedin.setVisibility(View.GONE);
             }
             else {
                 contactsViewHolder.mLinkedin.setText("LinkedIn: " + card.linkedIn);
+                Linkify.addLinks(contactsViewHolder.mLinkedin, Linkify.ALL);
             }
             if (card.facebook.isEmpty()){
                 contactsViewHolder.mFacebook.setVisibility(View.GONE);
             }
             else {
                 contactsViewHolder.mFacebook.setText("Facebook: " + card.facebook);
+                Linkify.addLinks(contactsViewHolder.mFacebook, Linkify.ALL);
             }
             if (card.twitter.isEmpty()){
                 contactsViewHolder.mTwitter.setVisibility(View.GONE);
             }
             else {
                 contactsViewHolder.mTwitter.setText("Twitter: " + card.twitter);
+                Linkify.addLinks(contactsViewHolder.mTwitter, Linkify.ALL);
             }
 
             contactsViewHolder.mDelete.setOnClickListener(new View.OnClickListener() {
@@ -188,17 +195,27 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
         public ContactsViewHolder(View view){
             super(view);
-
+            Typeface typeface = view.getContext().getResources().getFont(R.font.montserrat_regular);
             mName = (TextView) view.findViewById(R.id.displayName_contact_textView);
+            mName.setTypeface(typeface);
             mCell = (TextView) view.findViewById(R.id.cell_contact_textView);
+            mCell.setTypeface(typeface);
             mWorkNum = (TextView) view.findViewById(R.id.workNumber_contact_textView);
+            mWorkNum.setTypeface(typeface);
             mHomeNum = (TextView) view.findViewById(R.id.homeNumber_contact_textView);
+            mHomeNum.setTypeface(typeface);
             mEmail = (TextView) view.findViewById(R.id.personalEmail_contact_textView);
+            mEmail.setTypeface(typeface);
             mWorkEmail = (TextView) view.findViewById(R.id.workEmail_contact_textView);
+            mWorkEmail.setTypeface(typeface);
             mWebsite = (TextView) view.findViewById(R.id.website_contact_textView);
+            mWebsite.setTypeface(typeface);
             mLinkedin = (TextView) view.findViewById(R.id.linkedin_contact_textView);
+            mLinkedin.setTypeface(typeface);
             mFacebook = (TextView) view.findViewById(R.id.facebook_contact_textView);
+            mFacebook.setTypeface(typeface);
             mTwitter = (TextView) view.findViewById(R.id.twitter_contact_textView);
+            mTwitter.setTypeface(typeface);
             mDelete = (Button) view.findViewById(R.id.delete_contact_button);
         }
     }
