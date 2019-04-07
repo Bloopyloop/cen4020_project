@@ -96,7 +96,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 cardViewHolder.mTitle.setVisibility(View.GONE);
             }
             else {
-                cardViewHolder.mTitle.setText("Title: " + card.cardTitle);
+                cardViewHolder.mTitle.setText(card.cardTitle);
             }
             if (card.displayName.isEmpty()){
                 cardViewHolder.mName.setVisibility(View.GONE);

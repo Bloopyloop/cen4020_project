@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:cardCornerRadius="4dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="7dp"
+    app:contentPadding="15dp"
+    tools:cardCornerRadius="4dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_edge"/>
 
 
     <android.support.constraint.ConstraintLayout
@@ -18,9 +24,9 @@
         <TextView
             android:id="@+id/title_card_textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="28dp"
             android:background="@color/cardview_light_background"
-            android:gravity="center_vertical"
+            android:gravity="center_horizontal"
             android:text="@string/card_title"
             android:textColor="@color/darkText"
             android:textSize="@dimen/text_size"
