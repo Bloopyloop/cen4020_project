@@ -1,5 +1,6 @@
 package edu.fsu.cs.mobile.nudge;
 
+import android.app.ActionBar;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.menu_bar_center);
 
         mEmail = (EditText) findViewById(R.id.email_editText);
         mPassword = (EditText) findViewById(R.id.password_editText);

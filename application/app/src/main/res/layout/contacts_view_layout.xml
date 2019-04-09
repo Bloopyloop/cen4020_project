@@ -6,11 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/contacts_view"
-    tools:cardCornerRadius="4dp"
-    android:layout_margin="5dp">
+    app:cardCornerRadius="7dp"
+    android:layout_margin="5dp"
+    app:contentPadding="15dp"
+    tools:cardCornerRadius="4dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_edge"/>
 
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,119 +26,133 @@
             android:id="@+id/displayName_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/display_name_"
             android:background="@color/cardview_light_background"
             android:gravity="center_vertical"
+            android:text="@string/display_name_"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/cell_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/displayName_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/cell_phone"
             android:gravity="center_vertical"
+            android:text="@string/cell_phone"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/displayName_contact_textView" />
 
         <TextView
             android:id="@+id/workNumber_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cell_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/work_phone"
             android:gravity="center_vertical"
+            android:text="@string/work_phone"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cell_contact_textView" />
 
         <TextView
             android:id="@+id/homeNumber_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/workNumber_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/home_phone"
             android:gravity="center_vertical"
+            android:text="@string/home_phone"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workNumber_contact_textView" />
 
         <TextView
             android:id="@+id/personalEmail_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/homeNumber_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/personal_email"
             android:gravity="center_vertical"
+            android:text="@string/personal_email"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeNumber_contact_textView" />
 
         <TextView
             android:id="@+id/workEmail_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/personalEmail_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/work_email"
             android:gravity="center_vertical"
+            android:text="@string/work_email"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/personalEmail_contact_textView" />
 
         <TextView
             android:id="@+id/website_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/workEmail_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/website"
             android:gravity="center_vertical"
+            android:text="@string/website"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workEmail_contact_textView" />
 
         <TextView
             android:id="@+id/linkedin_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/website_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/linkedin"
             android:gravity="center_vertical"
+            android:text="@string/linkedin"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/website_contact_textView" />
 
         <TextView
             android:id="@+id/facebook_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linkedin_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/facebook"
             android:gravity="center_vertical"
+            android:text="@string/facebook"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linkedin_contact_textView" />
 
         <TextView
             android:id="@+id/twitter_contact_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/facebook_contact_textView"
             android:background="@color/cardview_light_background"
-            android:text="@string/twitter"
             android:gravity="center_vertical"
+            android:text="@string/twitter"
             android:textColor="@color/darkText"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/facebook_contact_textView" />
+
         <Button
             android:id="@+id/delete_contact_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="0dp"
             android:text="Delete"
-            android:layout_below="@id/twitter_contact_textView"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/twitter_contact_textView" />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.v7.widget.CardView >
